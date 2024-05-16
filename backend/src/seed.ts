@@ -1,21 +1,23 @@
-import { AppDataSource } from "./data-source";
-import { User } from "./entity/User";
-import bcrypt from "bcryptjs";
-import * as fs from "fs";
+import { AppDataSource } from './data-source';
+import { Post } from './entity/Post';
+import * as fs from 'fs';
 
 async function seed() {
   await AppDataSource.initialize();
 
-  const data = JSON.parse(fs.readFileSync("data.json", "utf-8"));
-  for (const userData of data.users) {
-    const user = new User();
-    user.username = userData.username;
-    user.password = await bcrypt.hash(userData.password, 10);
+  const data = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
+  for (const postData of data) {
+    const post = new Post();
+    post.title = postData.title;
+    post.content = postData.content;
+    post.postedAt = new Date(postData.postedAt);
+    post.postedBy = postData.postedBy;
+    post.tags = postData.tags;
 
-    await AppDataSource.manager.save(user);
+    await AppDataSource.manager.save(post);
   }
 
-  console.log("Seeding completed");
+  console.log('Seeding completed');
 }
 
-seed().catch((error) => console.log(error));
+seed().catch(error => console.log(error));
