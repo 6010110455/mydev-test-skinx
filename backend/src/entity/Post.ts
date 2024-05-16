@@ -8,20 +8,20 @@ import {
 @Entity()
 export class Post {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  title: string;
+  title!: string;
 
   @Column("text")
-  content: string;
+  content!: string;
 
   @CreateDateColumn()
-  postedAt: Date;
+  postedAt!: Date;
 
   @Column()
-  postedBy: string;
+  postedBy!: string;
 
   @Column("simple-array")
-  tags: string[];
+  tags!: string[];
 }

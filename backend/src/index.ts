@@ -4,13 +4,17 @@ import { User } from "./entity/User";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import cors from 'cors';
+
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
+// กำหนด middleware สำหรับใช้ CORS
+app.use(cors());
 
-const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret";
+const JWT_SECRET = process.env.JWT_SECRET || "a4a00580f4a7c2fd99c71d974bead62eac1f30d09633026929a74f23b0b7890c";
 
 AppDataSource.initialize()
   .then(async () => {

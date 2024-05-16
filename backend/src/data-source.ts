@@ -5,10 +5,10 @@ import { Post } from "./entity/Post";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "db",
+  host: "localhost",
   port: 5432,
-  username: "user",
-  password: "password",
+  username: "admin",
+  password: "1234567890",
   database: "mydatabase",
   synchronize: true,
   logging: false,
