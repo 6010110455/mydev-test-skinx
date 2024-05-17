@@ -13,8 +13,6 @@ const RegisterPage: React.FC = () => {
             const response = await axios.post('http://localhost:5000/register', { username, password });
             console.log(response.data);
             navigate('/login');
-
-   
         } catch (error) {
             console.error('Register failed', error);
         }
