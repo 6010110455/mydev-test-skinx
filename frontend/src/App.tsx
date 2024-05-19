@@ -14,8 +14,6 @@ import LogoutPage from "./LogoutPage";
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-  console.log("isAuthenticated", isAuthenticated);
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {

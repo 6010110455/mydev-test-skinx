@@ -10,7 +10,10 @@ router.get("/posts", async (req, res) => {
   const limit = parseInt(size as string);
 
   try {
-    const data = await AppDataSource.manager.find("Post");
+    const data = await AppDataSource.manager.find("Post", {
+      skip: offset,
+      take: limit,
+    });
 
     res.json(data);
   } catch (error) {
