@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Login from "./Login";
 import MainPage from "./main";
@@ -23,14 +28,19 @@ const App: React.FC = () => {
         setIsAuthenticated={setIsAuthenticated}
       />
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={isAuthenticated ? <MainPage /> : <Navigate to="/login" />}
+        />
         <Route path="/register" element={<RegisterPage />} />
+        <Route
+          path="/login"
+          element={<Login setIsAuthenticated={setIsAuthenticated} />}
+        />
         <Route
           path="/logout"
           element={<LogoutPage setIsAuthenticated={setIsAuthenticated} />}
         />
-        {/* เพิ่ม Route สำหรับหน้าอื่นๆ */}
       </Routes>
     </Router>
   );

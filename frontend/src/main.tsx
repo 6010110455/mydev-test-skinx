@@ -1,13 +1,21 @@
-// NewPage.js or NewPage.tsx
-import React from 'react';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const MainPage = () => {
+const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
   return (
     <div>
-      <h1>MainPage Page</h1>
-      <p>This is a Main Page in your app.</p>
+      <h2>Home Page</h2>
     </div>
   );
-}
+};
 
-export default MainPage;
+export default HomePage;
