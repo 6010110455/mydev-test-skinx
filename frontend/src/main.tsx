@@ -1,19 +1,15 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
-const HomePage: React.FC = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
-    }
-  }, [navigate]);
-
+const HomePage: React.FC<{ isAuthenticated: boolean }> = ({
+  isAuthenticated,
+}) => {
   return (
     <div>
-      <h2>Home Page</h2>
+      {isAuthenticated ? (
+        <h2>Home Page</h2>
+      ) : (
+        <h2>You are not authenticated. Please log in.</h2>
+      )}
     </div>
   );
 };
