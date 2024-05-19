@@ -40,11 +40,24 @@ const HomePage: React.FC<{ isAuthenticated: boolean }> = ({
     setSize((prevSize) => prevSize + 10);
   };
 
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setPage(1);
+  };
+
   return (
     <div>
       {isAuthenticated ? (
         <div>
-          <h2>Home Page</h2>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <input type="text" value={search} onChange={handleSearchChange} />
+            </form>
+          </div>
           <div>
             {posts.map((post, index) => (
               <div key={index}>

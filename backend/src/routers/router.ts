@@ -1,5 +1,6 @@
 import express from "express";
 import { AppDataSource } from "../data-source";
+import { Like } from "typeorm";
 
 const router = express.Router();
 
@@ -11,6 +12,7 @@ router.get("/posts", async (req, res) => {
 
   try {
     const data = await AppDataSource.manager.find("Post", {
+      where: [{ title: Like(`%${search}%`) }, { tags: Like(`%${search}%`) }],
       skip: offset,
       take: limit,
     });
