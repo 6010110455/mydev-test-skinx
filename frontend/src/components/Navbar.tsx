@@ -109,7 +109,7 @@ const Navbar: React.FC<NavbarProps> = ({
             )}
             <li>
               <Link
-                to="/"
+                to="https://benz.sengsalee.dev/"
                 className="block py-2 px-3 text-whit rounded md:bg-transparent md:p-0"
               >
                 Contact

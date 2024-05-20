@@ -87,7 +87,7 @@ const HomePage: React.FC<{ isAuthenticated: boolean }> = ({
                   </div>
                   <div className="flex gap-1 mt-2">
                     {post.tags.map((tag) => (
-                      <div className="rounded-md bg-gray-100 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-150">
+                      <div className="rounded-md bg-gray-100 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-150 text-xs">
                         {tag}
                       </div>
                     ))}
