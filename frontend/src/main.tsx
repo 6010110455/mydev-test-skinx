@@ -81,10 +81,8 @@ const HomePage: React.FC<{ isAuthenticated: boolean }> = ({
                     </p>
                   </div>
                   <div className="group relative">
-                    <div>
-                      <div className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600 cursor-pointer hover:underline">
-                        <Link to={`/post/${post.id}`}>{post.title}</Link>
-                      </div>
+                    <div className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600 cursor-pointer hover:underline">
+                      <Link to={`/post/${post.id}`}>{post.title}</Link>
                     </div>
                   </div>
                   <div className="flex gap-1 mt-2">
