@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface LoginPageProps {
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,6 +35,17 @@ const LoginPage: React.FC<LoginPageProps> = ({ setIsAuthenticated }) => {
       console.error("Login failed:", (error as Error).message);
     }
   };
+
+  const checkToken = () => {
+    const token = localStorage.getItem("token");
+    return token ? true : false;
+  };
+
+  useEffect(() => {
+    if (checkToken()) {
+      navigate("/"); // เมื่อมี token ให้ไปยังหน้าหลักโดยอัตโนมัติ
+    }
+  }, []);
 
   return (
     <div className="bg-white">
@@ -70,12 +82,20 @@ const LoginPage: React.FC<LoginPageProps> = ({ setIsAuthenticated }) => {
               onChange={handleChange}
             />
           </div>
-          <button
-            type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Login
-          </button>
+          <div className="flex">
+            <button
+              type="submit"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Login
+            </button>
+            <a className="mx-auto my-auto"> or </a>
+            <Link to="/register">
+              <button className="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Register
+              </button>
+            </Link>
+          </div>
         </form>
       </div>
     </div>
