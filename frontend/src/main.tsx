@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Dropdown from "./components/Dropdown";
 
 interface Post {
   id: number;
@@ -18,6 +19,12 @@ const HomePage: React.FC<{ isAuthenticated: boolean }> = ({
   const [page, setPage] = useState<number>(1);
   const [size, setSize] = useState<number>(10);
   const [search, setSearch] = useState<string>("");
+  const [sortBy, setSortBy] = useState<string>("desc");
+
+  const handleSortChange = (sortOption: string) => {
+    setSortBy(sortOption);
+    // ทำสิ่งที่เหมาะสมเมื่อผู้ใช้เลือกเปลี่ยนการเรียงลำดับ
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -25,7 +32,7 @@ const HomePage: React.FC<{ isAuthenticated: boolean }> = ({
         const response = await axios.get<Post[]>(
           "http://localhost:5000/api/posts",
           {
-            params: { page, size, search },
+            params: { page, size, search, sortBy },
           }
         );
         setPosts(response.data);
@@ -35,7 +42,7 @@ const HomePage: React.FC<{ isAuthenticated: boolean }> = ({
     };
 
     fetchPosts();
-  }, [page, size, search]);
+  }, [page, size, search, sortBy]);
 
   const handleLoadMore = () => {
     setSize((prevSize) => prevSize + 10);
@@ -51,15 +58,17 @@ const HomePage: React.FC<{ isAuthenticated: boolean }> = ({
         <div className="bg-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:mx-0">
-              <div className="w-full">
-                <input
-                  type="search"
-                  id="default-search"
-                  onChange={handleSearchChange}
-                  className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Search Title and Tag"
-                  required
-                />
+              <div className="w-full flex">
+                <div className="w-full">
+                  <input
+                    type="search"
+                    id="default-search"
+                    onChange={handleSearchChange}
+                    className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Search Title and Tag"
+                    required
+                  />
+                </div>
               </div>
             </div>
 
@@ -103,6 +112,7 @@ const HomePage: React.FC<{ isAuthenticated: boolean }> = ({
                 </article>
               ))}
             </div>
+
             {posts.length > 9 && (
               <div className="fter:h-px my-10 flex items-center before:h-px before:flex-1  before:bg-gray-300 before:content-[''] after:h-px after:flex-1 after:bg-gray-300  after:content-['']">
                 <button

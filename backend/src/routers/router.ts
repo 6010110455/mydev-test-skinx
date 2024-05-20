@@ -5,7 +5,7 @@ import { Like } from "typeorm";
 const router = express.Router();
 
 router.get("/posts", async (req, res) => {
-  const { page = 1, size = 10, search = "" } = req.query;
+  const { page = 1, size = 10, search = "", sortBy = "desc" } = req.query;
 
   const offset = (parseInt(page as string) - 1) * parseInt(size as string);
   const limit = parseInt(size as string);
