@@ -10,6 +10,7 @@ import Login from "./Login";
 import HomePage from "./main";
 import RegisterPage from "./Register";
 import LogoutPage from "./LogoutPage";
+import DetailPage from "./DetailPage";
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -32,6 +33,7 @@ const App: React.FC = () => {
           path="/"
           element={<HomePage isAuthenticated={isAuthenticated} />}
         />
+        <Route path="/post/:id" element={<DetailPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route
           path="/login"
