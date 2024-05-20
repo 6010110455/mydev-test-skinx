@@ -67,7 +67,18 @@ npm run seed
 ## How to Use
 
 1. Register a new user on the registration page.
+   ![Register Screenshot](screenshot1.png)
+
 2. Login with the registered credentials.
+   ![Login Screenshot](screenshot2.png)
+
 3. View the list of posts on the main page with pagination and load more function.
+   ![View Screenshot](screenshot3.png)
+   ![View Screenshot](screenshot7.png)
+
 4. Search for posts by title or tags using the search bar.
+   ![Search Screenshot](screenshot4.png)
+   ![Search Screenshot](screenshot5.png)
+
 5. Click on a post title to view its details.
+   ![Detail Screenshot](screenshot6.png)
